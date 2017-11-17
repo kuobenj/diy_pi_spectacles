@@ -17,7 +17,7 @@ ButtonList = [shutdownBPin, functionBPin, modeBPin, flashBPin]
 LEDList = [flashSPin, recordSPin, modeSPin, statusSPin]
 
 def button_callback(button):
-	print 'button pressed: ' + button
+	print 'button pressed: ' + repr(button)
 	# because for now there's 4 buttons I can cheat a little and map each button to an LED to toggle for a test
 	for i in range(0, len(ButtonList)):
 		if button == ButtonList[i]:
@@ -29,7 +29,7 @@ RPi.GPIO.setmode(RPi.GPIO.BOARD) # Broadcom pin-numbering scheme
 # Buttons
 for button in ButtonList:
 	RPi.GPIO.setup(button, RPi.GPIO.IN, pull_up_down = RPi.GPIO.PUD_UP)
-	RPi.GPIO.add_event_detect(button, RPi.GPIO.FALLING, callback=button_callback)  # add falling edge detection on a channel
+	RPi.GPIO.add_event_detect(button, RPi.GPIO.FALLING, callback=button_callback, bouncetime=200)  # add falling edge detection on a channel
 
 # LED Signals
 for led in LEDList:
