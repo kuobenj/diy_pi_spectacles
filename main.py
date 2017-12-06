@@ -61,7 +61,7 @@ def button_callback(button):
             print 'flash_mode ' + repr(flash_mode)
             if flash_mode:
                 RPi.GPIO.output(flashSPin, RPi.GPIO.HIGH)
-            camera.capture(datetime.datetime.strftime(datetime.datetime.now(), '%Y%m%d%H%M%S') + '.jpg')
+            camera.capture('/home/pi/diy_pi_spectacles/' + datetime.datetime.strftime(datetime.datetime.now(), '%Y%m%d%H%M%S') + '.jpg')
             RPi.GPIO.output(flashSPin, RPi.GPIO.LOW)
 
         if button == shutdownBPin:
